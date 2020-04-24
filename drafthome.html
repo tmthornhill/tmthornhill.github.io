@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html>
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+<script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+<script src="./javascript/drafthome.js" defer></script>
+
+
+  <head>
+    <style>
+
+      body {
+        text-align: center;
+        background-color: #2E2B2A;
+        width: auto;
+      }
+
+      .image-section {
+        margin-top: 30px;
+        display: flex;
+        justify-content: center;
+      }
+
+      .section-style {
+        margin-right: 25px;
+        margin-left: 25px;
+      }
+
+      .button {
+      background-color: #C42129;
+      border: none;
+      color: white;
+      padding: 11px 25px;
+      text-align: center;
+      font-size: 16px;
+      cursor: pointer;
+      font-family: font1;
+      }
+
+      .button2 {
+      background-color: #C42129;
+      border: none;
+      color: white;
+      padding: 6px 25px;
+      text-align: center;
+      font-size: 12px;
+      height: 24px;
+      cursor: pointer;
+      font-family: font1;
+      }
+
+
+      .button:hover {
+          background-color: #7C1317;
+      }
+
+      * {
+        margin:0;
+        padding:0;
+      }
+
+      .textInputPlaylist {
+        margin-top: 5px;
+        padding: 6px 5px;
+        font-size: 12px;
+        height: 10px;
+      }
+
+      .textInputUsername {
+        margin-top: 15px;
+        padding: 6px 5px;
+        font-size: 12px;
+        height: 10px;
+        width: 200px;
+      }
+
+      .textInput {
+        margin-top: 10px;
+        padding: 9px 5px;
+        font-size: 16px;
+        height: 18px;
+      }
+
+      p {
+        color: black;
+        font-family: font1;
+        font-size: 12px;
+      }
+
+      h1 {
+        margin-top: 20px;
+        color: white;
+        padding:5px 0px;
+        font-family: font1;
+      }
+
+      h2 {
+        margin-top: 10px;
+        color: white;
+        font-size: 14px;
+        padding:5px 0px;
+        font-family: font2;
+      }
+
+      h3 {
+        color: white;
+        font-size: 22px;
+        margin-top: 20px;
+        font-family: font2;
+      }
+
+      h4 {
+        color: gray;
+        font-size: 18px;
+        font-family: font2;
+        margin-top: 4px;
+      }
+
+      h5 {
+        color: red;
+        font-size: 12px;
+        font-family: font2;
+        margin-top: 4px;
+        text-decoration: none;
+      }
+
+      h5 a:link {
+        color: #C42129;
+      }
+
+      h5 a:visited {
+        color: #C42129;
+      }
+
+      h5 a:hover {
+        color: white;
+      }
+
+      img {
+        vertical-align: bottom;
+      }
+
+      .box {
+        width: 60%;
+        margin: 0 auto;
+        padding: 15px;
+        background-clip: padding-box;
+        text-align: center;
+        font-family: font1;
+        margin-bottom: 0px;
+        margin-top: 20px;
+        font-size: 10px;
+      }
+
+      .faqbutton {
+        border: none;
+        color: white;
+        padding: 10px 25px;
+        text-align: center;
+        font-size: 12px;
+        cursor: pointer;
+        font-family: font1;
+      }
+
+      .playlistbutton {
+        border: none;
+        color: white;
+        padding: 10px 25px;
+        text-align: center;
+        font-size: 12px;
+        cursor: pointer;
+        font-family: font1;
+      }
+
+      .backbutton {
+        border: none;
+        color: white;
+        padding: 10px 25px;
+        text-align: center;
+        font-size: 12px;
+        cursor: pointer;
+        font-family: font1;
+      }
+
+      .overlay {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(0, 0, 0, 0.7);
+        transition: opacity 500ms;
+        visibility: hidden;
+        opacity: 0;
+        overflow: auto;
+      }
+      .overlay:target {
+        visibility: visible;
+        opacity: 1;
+      }
+
+      .popup {
+        margin: 70px auto;
+        padding: 20px;
+        background: #fff;
+        border-radius: 5px;
+        width: 80%;
+        position: relative;
+        transition: all 5s ease-in-out;
+        font-family: font2;
+        overflow: auto;
+      }
+
+      .popup h2 {
+        margin-top: 0;
+        color: #333;
+        font-family: font2;
+      }
+
+      .popup h3 {
+        margin-top: 0;
+        color: #333;
+        font-family: font2;
+        font-size: 30px;
+        margin-bottom: 10px;
+      }
+
+      .popup .close {
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        transition: all 200ms;
+        font-size: 22px;
+        font-weight: bold;
+        text-decoration: none;
+        color: #333;
+      }
+      .popup .close:hover {
+        color: #003366;
+      }
+      .popup .content {
+        max-height: 80%;
+        overflow: auto;
+        line-height: 1.6;
+      }
+
+      .draftanimation{
+        /* width: 100%; */
+        margin-top: 0px;
+      }
+
+      @font-face{
+          font-family: font1;
+          src: url('./assets/junction-regular.woff'), url('./assets/junction-regular.woff') format('woff');
+      }
+
+      @font-face{
+          font-family: font2;
+          src: url('./assets/junction-light.woff'), url('./assets/junction-light.woff') format('woff');
+      }
+
+      @media screen and (max-width: 1020px) {
+        .body {
+        float: none;
+        width: auto;
+        }
+      }
+
+      .playlistSection {
+        margin-bottom: 15px;
+        margin-top: 10px;
+
+      }
+
+      .loader {
+          border: 5px solid #f3f3f3;
+          border-radius: 50%;
+          border-top: 5px solid #1db954;
+          width: 30px;
+          height: 30px;
+          -webkit-animation: spin 0.5s linear infinite; /* Safari */
+          animation: spin 0.5s linear infinite;
+          display:none;
+        }
+
+        /* Safari */
+        @-webkit-keyframes spin {
+          0% { -webkit-transform: rotate(0deg); }
+          100% { -webkit-transform: rotate(360deg); }
+        }
+
+        @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+
+    </style>
+
+<title>Draft.fm - Streaming from your favorite friends</title>
+<script async src="./javascript/drafthome.js"></script>
+</head>
+
+<body>
+<h1>Draft.fm</h1>
+<h2 id="headerMessage">Tune into a friend's live Last.fm stream via Spotify</h2>
+<div class = "userSection">
+  <input type="text" id = "textInput" class = "textInput" placeholder="Enter last.fm username">
+  <button class = "button" id="button">Start Drafting</button>
+</div>
+
+
+<div class="image-section">
+  <div class="section-style">
+    <img id="albumart" src="https://newnoisemagazine.com/wp-content/uploads/2017/11/Polaris-The-Mortal-Coil.jpg" alt="Album Artwork" width = 350 height = 350 />
+    <p></p>
+  </div>
+</div>
+
+<h3 id="songTitle">Streaming live</h3>
+<h4 id="artistTitle">from</h4>
+<h5><a href = "https://www.last.fm/about" target="_blank" id="viauser">Last.fm</h5>
+
+<div class="box">
+  <a class="playlistbutton" href="#popup2">Create Custom Spotify Playlist</a></br></br>
+	<a class="faqbutton" href="#popup1">Frequently Asked Questions</a></br></br>
+  <a class="backbutton" href="https://tmthornhill.github.io/draft">Re-grant Spotify Access</a></br></br></br>
+  <img id="draftanimation" src="./assets/draftanimation.gif" alt="draftanimation" />
+</div>
+
+<div id="popup2" class="overlay" #close>
+	<div class="popup">
+    <h3><br/><b>Create Custom Spotify Playlist</b></h3>
+    <a class="close" href="#close">&times;</a>
+    <div id="playlistGenerator">
+      <p>Create Spotify playlist comprised of each of my Last.fm friends' top
+      <select id="tracks">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select> song(s) over the past
+      <select id="timeframe">
+        <option value="week">week</option>
+        <option value="month">month</option>
+        <option value="year">year</option>
+        <option value="century">century</option>
+      </select> .</p>
+    </div>
+    <div>
+    <input type="text" id = "textInputUsername" class = "textInputUsername" placeholder="Enter your Last.fm username">
+    <input type="text" id = "textInputUsername2" class = "textInputUsername" placeholder="Enter your Spotify username">
+    </div>
+    <div class = "playlistSection">
+      <input type="text" id = "textInputPlaylist" class = "textInputPlaylist" placeholder="Enter playlist title">
+      <button class = "button2" id="createPlaylist">Create Playlist</button>
+      <div class="loader"></div>
+    </div>
+    <p class = "result" id = "result"></p>
+  </div>
+</div>
+
+<div id="popup1" class="overlay" #close>
+	<div class="popup">
+		<h3><br/><b>FAQ</b></h3>
+		<a class="close" href="#close">&times;</a>
+		<div class="content">
+      <br/><b>Q</b>: Do I need Spotify premium to use Draft.fm?</br> <b>A</b>: Yes.<br/><br/>
+      <b>Q</b>: Do I need Spotify to already be playing for Draft.fm to work? </br><b>A</b>: Yes. Start playing something on Spotify on any device prior to drafting.<br/><br/>
+      <b>Q</b>: Why does my stream stop after an hour? </br><b>A</b>: The Spotify authentication type that Draft.fm uses only lasts for one hour. You can re-grant access to continue listening.<br/><br/>
+      <b>Q</b>: Does Draft.fm only support Last.fm accounts? </br><b>A</b>: Currently, Draft.fm  is limited to pulling listening data from Last.fm accounts only.<br/><br/>
+      <b>Q</b>: Does Draft.fm work on mobile? </br><b>A</b>: Yes, but there is a downside. For Draft.fm to work properly, the browser tab needs to stay open. Because of this, it runs better on a computer since you can just run it on a tab in the background. On mobile, if you leave the specific browser tab, Draft.fm can't operate.<br/><br/>
+      <b>Q</b>: Shoot. I left Draft.fm on in my browser and it keeps changing my song. What do I do? </br><b>A</b>: Just restart your Spotify application. This should end your session.<br/><br/>
+      <b>Q</b>: Why won't Draft.fm work for me? </br><b>A</b>: Perhaps several reasons. Firewall? Not authenticated via Spotify? Typing in an incorrect Last.fm username? No internet connection? Or maybe something I haven't considered yet. Additionally, since Last.fm users don't all use Spotify to Scrobble, it's possible that you are unable to play some songs.<br/><br/>
+      <b>Q</b>: What do you mean by Draft? </br><b>A</b>: Drafting, like when talking about aerodynamics. Basically, when you follow directly behind someone in a car or on a bike and can ride their slipstream. So, in this case, you're streaming their music immediately behind them. Real clever, huh?<br/><br/>
+      <b>Q</b>: What is your Last.fm username? </br><b>A</b>: tmthornhill. More information about me can be found <a href="https://tmthornhill.github.io/" target="_blank">here.</a>
+    </div>
+	</div>
+</div>
+</body>
+</html>

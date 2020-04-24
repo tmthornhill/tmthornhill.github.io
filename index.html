@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Tim Thornhill</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<style>
+
+    body {
+      text-align: center;
+      background-color: white;
+      margin: 0;
+      line-height: 1.2;
+    }
+
+    /* unvisited link */
+    .everythingElse a:link {
+        color: #003366;
+    }
+
+    /* visited link */
+    .everythingElse a:visited {
+        color: red;
+    }
+
+    /* mouse over link */
+    .everythingElse a:hover {
+        color: rgba(251,176,64,1);
+        /* background-color: #003366; */
+    }
+
+    .avatar {
+      border-radius: 50%;
+      margin-top: 30px;
+      border: 3px solid black;
+    }
+
+
+    .Intro {
+      margin-top: 30px;
+      font-family: font2;
+      font-size: 22px;
+      text-align: center;
+      margin-right: 20px;
+      margin-left: 20px;
+    }
+
+    .Draftfm {
+      margin-right: 20px;
+      margin-left: 20px;
+    }
+
+    .DraftfmText {
+      margin-right: 20px;
+      margin-left: 20px;
+      font-family: font2;
+      font-size: 22px;
+      text-align: center;
+    }
+
+    @font-face{
+        font-family: font1;
+        src: url('./assets/junction-regular.woff'), url('./assets/junction-regular.woff') format('woff');
+    }
+
+    @font-face{
+        font-family: font2;
+        src: url('./assets/junction-light.woff'), url('./assets/junction-light.woff') format('woff');
+    }
+
+    .column {
+        float: left;
+        width: 50%;
+    }
+
+    .intro-area{
+      margin-top: 60px;
+      margin-left: 20px;
+      margin-right: 20px;
+    }
+
+    .queuedColumn {
+        float: left;
+        width: 33.3%;
+    }
+
+    /* Clear floats after the columns */
+    .Queued:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+    .Queued {
+      margin-top: 0px;
+      background-image: url('https://cdn.stocksnap.io/img-thumbs/960w/DH9VTNUICA.jpg');
+      background-size: cover;
+      width: 100%;
+    }
+
+    .queuedMain {
+      border-radius: 20px;
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+
+    .queuedComment {
+      border-radius: 20px;
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+
+    .queuedShare {
+      border-radius: 20px;
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+
+    h1{
+      font-family: font1;
+      font-size: 60px;
+      text-align: center;
+      height: 40px;
+      margin-bottom: 50px;
+      margin-top: 30px;
+      width: 100%;
+    }
+
+    h3{
+      font-family: font1;
+      font-size: 0px;
+      text-align: center;
+      height: 20px;
+    }
+
+    .iconColumn {
+        float: left;
+        width: 11.1111%;
+    }
+
+    /* Clear floats after the columns */
+    .Icons:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+    .Icons{
+      width: 100%;
+      align-self: center;
+      margin-top: 30px;
+    }
+
+    .miniIcon {
+      border-radius: 50%;
+    }
+
+    .aboutQueued {
+      content: "";
+      display: table;
+      clear: both;
+      margin-top: 20px;
+      font-family: font2;
+      font-size: 22px;
+    }
+
+    .queuedLogo{
+      margin-top: 25px;
+      vertical-align: middle;
+      display: inline-block;
+    }
+
+    .queuedDescription{
+      margin-top: 30px;
+      text-align: center;
+      margin-right: 20px;
+      margin-left: 20px;
+    }
+
+    .left {
+      width: 50;
+    }
+
+    .right {
+      width: 50%;
+    }
+
+    .queuedSpecifications{
+      margin-top: 0px;
+      text-align: center;
+      margin-right: 80px;
+      margin-left: 80px;
+      font-size: 22px;
+      font-family: font2;
+    }
+
+    .box {
+      margin: 0 auto;
+      background: rgba(255,255,255,0.2);
+      padding: 15px;
+      border: 2px solid #fff;
+      border-radius: 25px/50px;
+      background-clip: padding-box;
+      text-align: center;
+      font-family: font1;
+    }
+
+    .button {
+      font-size: 1em;
+      padding: 10px;
+      color: #fff;
+      border: 2px solid black;
+      border-radius: 25px/50px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.3s ease-out;
+      font-family: font2;
+    }
+
+    .overlay {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0, 0, 0, 0.7);
+      transition: opacity 500ms;
+      visibility: hidden;
+      opacity: 0;
+    }
+
+    .overlay:target {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .popup {
+      margin: 70px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 5px;
+      width: 60%;
+      position: relative;
+      transition: all 5s ease-in-out;
+      font-family: font2;
+      overflow: auto;
+    }
+
+    .popup h2 {
+      margin-top: 0;
+      color: #333;
+      font-family: font2;
+    }
+    .popup .close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      transition: all 200ms;
+      font-size: 22px;
+      font-weight: bold;
+      text-decoration: none;
+      color: #333;
+    }
+    .popup .close:hover {
+      color: #003366;
+    }
+    .popup .content {
+      max-height: 60%;
+      overflow: auto;
+    }
+
+    .misc{
+      margin-top: 80px;
+      background-image: url('https://cdn.stocksnap.io/img-thumbs/960w/QBEYGIVT4X.jpg');
+      background-size: cover;
+      width: 100%;
+      }
+
+    .miscjava{
+      margin-top: 0px;
+      width: 100%;
+      }
+
+    .misc:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+    .miscjava:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+    .miscapps{
+      margin-top: 40px;
+      width: 100%;
+      }
+
+    .miscapps:after {
+          content: "";
+          display: table;
+          clear: both;
+      }
+
+    .educationSegment {
+      font-size: 18px;
+      font-family: font2;
+      margin-bottom: 30px;
+      width: 100%;
+    }
+
+    .educationSegment:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+    .educationavatar {
+      border-radius: 50%;
+      margin-top: 20px;
+      border: 3px solid black;
+    }
+
+    .dividerimage{
+      margin-top: 30px;
+      width:100%;
+      height:300px;
+    }
+
+    .todo{
+      font-size: 30px;
+      font-family: font1;
+    }
+
+    .todo2{
+      font-size: 22px;
+      font-family: font2;
+    }
+
+    .todo3{
+      font-size: 22px;
+      font-family: font2;
+      margin-left: 20px;
+      margin-right: 20px;
+      text-align: center;
+    }
+
+    .todo4{
+      font-size: 22px;
+      font-family: font2;
+      margin-left: 40px;
+      margin-right: 40px;
+      text-align: center;
+    }
+
+    .contactNote {
+      text-align: center;
+      font-size: 22px;
+      font-family: font2;
+      margin-left: 20px;
+      margin-right: 20px;
+    }
+
+
+    .navbar-inverse {
+     background-color: rgba(0, 51, 102,.92);
+     border-color: rgba(0, 51, 102,.92);
+     border-radius: 0px;
+     font-size: 22px;
+     font-family: font1;
+     top: 0;
+     left: 0;
+     position: fixed;
+     width: 100%;
+     z-index:300;
+    }
+
+    .navbar-brand{
+      font-size: 30px;
+      z-index:300;
+      padding-top: 20px;
+    }
+
+    div#banner2 {
+      bottom: 0;
+      left: 0;
+      background-color: rgba(0, 51, 102,.92);
+      width: 100%;
+      height: 55px;
+    }
+
+    div#banner-content2 {
+      width: 100%;
+      margin: 0 auto;
+      text-align: center;
+      font-size: 18px;
+      font-family: font1;
+      color: white;
+      text-decoration: none;
+    }
+
+    .draftanimation{
+      margin-right: 80px;
+    }
+
+    @media screen and (min-width: 48em){
+
+    .Intro{
+      text-align: justify;
+    }
+
+    .queuedDescription{
+      text-align: justify;
+      margin-left: 40px;
+      margin-right: 40px;
+    }
+
+    .DraftfmText{
+      text-align: justify;
+      margin-left: 40px;
+    }
+
+    .todo3{
+      text-align: justify;
+      margin-left: 40px;
+      margin-right: 40px;
+    }
+
+    .todo4{
+      text-align: justify;
+      margin-left: 80px;
+      margin-right: 80px;
+    }
+
+  }
+
+</style>
+<body>
+
+<nav class="navbar navbar-inverse" id = "navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" id="navbar-brand" href="#">Tim Thornhill</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#education">Work and Education</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="intro-area">
+  <div class="row">
+    <div class="col-sm-4 top-col-left">
+      <img class = "avatar" src="./assets/avatar.jpg" width = 220px height = 220px>
+    </div>
+    <div class="col-sm-8 top-col-right">
+      <p class="Intro">Hey there! I'm Tim Thornhill. I currently work in actuarial healthcare consulting, but I'm very passionate about analytics, social networking, and software, particularly in the music space. Feel free to check out a few of my projects below. These came to life to fill some gaps left by various music streaming services, as certain features I was looking for (as far as I was aware) didn't exist or were not available on specific platforms. So, these are my attempts to build them myself. Please drop me a line if you have any questions!</p>
+    </div>
+  </div>
+</div>
+
+<section class="everythingElse">
+
+<a name="projects">
+  <h3 style="padding-top: 40px; margin-top: -40px;"></h3>
+</a>
+
+<div id="ProjectsHeader">
+  <h1>Projects</h1>
+</div>
+
+<div class="Queued">
+  <div class="col-sm-4 top-col-left">
+    <img class = "queuedMain" src="./assets/queuedMain.gif" width = 200px>
+  </div>
+  <div class="col-sm-4 top-col-center">
+    <img class = "queuedComment" src="./assets/queuedComment.gif" width = 200px>
+  </div>
+  <div class="col-sm-4 top-col-right">
+    <img class = "queuedShare" src="./assets/queuedShare.gif" width = 200px>
+  </div>
+</div>
+
+<div class="aboutQueued">
+    <img class="queuedLogo" src="./assets/queuedLogo.png" width = 250px>
+    <div p class="queuedDescription">Queued takes the <a href="https://www.last.fm/about" target="_blank">Last.fm</a> experience that many already love and adds a social component to it. What are your friends listening to at the moment? Want to share your favorite song with them? How about quickly view their Last.fm stats, such as favorite arist of all time, or most played song this week? Queued has you covered. This project came to life as a result of Spotify desktop being blocked by my previous employer. Several of my coworkers and I loved to share music with each other, but the Spotify friend feed was unavailable, so we needed a way to easily see what everyone was listening to. Queued solved this problem for all of us.</p>
+    </div>
+</div>
+
+<div class="col-sm-12 top-col-center">
+  <div class="box">
+	<a class="button" href="#popup1">Queued Technical Specifications</a>
+  </div>
+</div>
+
+<div>
+  <div class="miscjava">
+    <div class="col-sm-7 top-col-left">
+    <p class="Draftfm" style="font-size:350%; font-family:font1;"></br>Draft.fm</p>
+      <p class="DraftfmText">I created <a href="https://tmthornhill.github.io/draft.html" target="_blank">Draft.fm</a> with the intention of learning Javascript, HTML, and CSS while trying to bring a longtime idea of mine to life. The premise is simple. If your friend is listening to music, you can listen with them in (almost) real time! Similar to Queued, this project works with Spotify and Last.fm endpoints to pull current listening data and update users' Spotify playback state. Draft.fm supports both mobile and desktop usage, but Spotify premium is needed. I may eventually try to integrate this project into Queued, or vice-versa, once I revisit these in the future. </br></br>More recently, I added a feature that allows you to quickly create Spotify playlists comprised of your friends' top songs for different lookback periods (all-time, last week, month, year).</p>
+      <img id="draftanimation" src="./assets/draftanimation.gif" alt="draftanimation" />
+    </div>
+    <div class="col-sm-5 top-col-right">
+    </br></br><img class = "draftpics" src="./assets/draft1.png" width = 300px>
+    </div>
+  </div>
+</div>
+
+<!--
+<div>
+  <div class="misc">
+    <div class="col-sm-4 top-col-left">
+      <img class = "queuedMain" src="./assets/todo.gif" width = 200px>
+    </div>
+    <div class="col-sm-4 top-col-center">
+      <img class = "queuedShare" src="./assets/armoon.gif" width = 200px>
+    </div>
+    <div class="col-sm-4 top-col-right">
+      <img class = "queuedComment" src="./assets/weather.gif" width = 200px>
+    </div>
+  </div>
+</div>
+
+
+<div class="miscapps">
+  <div class="col-sm-4 top-col-left">
+    <p class="todo">To-Do List</p>
+    <p class="todo2">Core Data<br/>Navigation VC<br/><br/></p>
+  </div>
+  <div class="col-sm-4 top-col-center">
+    <p class="todo">AR Moon</p>
+    <p class="todo2">Camera Access<br/>AR Kit<br/><br/></p>
+  </div>
+  <div class="col-sm-4 top-col-right">
+    <p class="todo">Simple Weather</p>
+    <p class="todo2">Alamofire<br/>Location Services<br/><br/><p>
+  </div>
+</div>
+
+<div>
+  <p class="todo3">The three projects above, some simpler than others, were a few of several projects that were part of a comprehensive iOS course that I took on <a href="https://www.udemy.com/ios-11-app-development-bootcamp/" target="_blank">Udemy</a>. Each project was designed to focus on implementing new techniques, SDKs, and features ranging from simple MVC implementation to utilizing Apple's powerful ML Kit.<p>
+</div>
+-->
+
+<div class="divider1">
+  <img class="dividerimage" src="https://cdn.stocksnap.io/img-thumbs/960w/CWTFJGCGKQ.jpg">
+</div>
+
+<a name="education">
+    <h3 style="padding-top: 50px; margin-top: -50px;"></h3>
+</a>
+
+<div class="EducationHeader">
+  <div class="col-sm-12 top-col-center">
+    <h1>Work and Education</h1>
+  </div>
+</div>
+
+<div class="educationSegment"></br></br>
+  <div class="col-sm-3 top-col-left">
+    <img class = "educationavatar" src="./assets/sba.png" width = 180px height = 180px>
+    <p></br></br>SB Actuaries<br/>Current Role</p>
+  </div>
+  <div class="col-sm-3 top-col-left">
+    <img class = "educationavatar" src="./assets/wtw.jpg" width = 180px height = 180px>
+    <p></br></br>Willis Towers Watson<br/>4 Years of Experience</p>
+  </div>
+  <div class="col-sm-3 top-col-center">
+    <img class = "educationavatar" src="./assets/ucsb.jpg" width = 180px height = 180px>
+    <p></br></br>University of California, Santa Barbara<br/>Actuarial Science, B.S. (2014) </p>
+  </div>
+  <div class="col-sm-3 top-col-right">
+    <img class = "educationavatar" src="./assets/lund.jpg" width = 180px height = 180px>
+    <p></br></br>Lund University (Sweden)<br/>Education Abroad Program</p>
+  </div>
+</div>
+
+<div>
+  <p class="todo3">I currently work as a Consultant at <a href="https://sbactuaries.com" target="_blank">SB Actuaries</a>. Day-to-day responsibilities include financial analysis, strategic and product development, model construction, project management, and more. <br/><br/>Outside of work, I'm currently working on a web application that can generate playlists using collaborative filtering, as well as offer visualizations of personal listening trends and various other interesting stats.
+</div>
+
+<div class="divider1">
+  <img class="dividerimage" src="https://cdn.stocksnap.io/img-thumbs/960w/7XKHUOA1L3.jpg">
+</div>
+
+<a name="contact">
+    <h3 style="padding-top: 50px; margin-top: -50px;"></h3>
+</a>
+
+<div class="ContactHeader">
+  <h1>Contact</h1>
+</div>
+
+<div class="contactNote">
+  <p>Feel free to contact, follow, or connect with me via any of the platforms below.</p>
+</div>
+
+<div class="Icons">
+  <div class="iconColumn"><p> </p></div>
+  <div class="iconColumn"><p> </p></div>
+  <div class="iconColumn">
+    <a href="https://instagram.com/tmthornhill" target="_blank"><img class = "miniIcon" src="./assets/instagram.png" width = 40px height = 40px></a>
+  </div>
+  <div class="iconColumn">
+    <a href="https://facebook.com/tmthornhill" target="_blank"><img class = "miniIcon" src="./assets/facebook.png" width = 40px height = 40px></a>
+  </div>
+  <div class="iconColumn">
+    <a href="mailto:tmthornhill92@gmail.com"><img class = "miniIcon" src="./assets/gmail.png" width = 40px height = 40px></a>
+  </div>
+  <div class="iconColumn">
+    <a href="https://www.linkedin.com/in/tmthornhill/" target="_blank"><img class = "miniIcon" src="./assets/linkedin.png" width = 40px height = 40px></a>
+  </div>
+  <div class="iconColumn">
+    <a href="https://www.last.fm/user/tmthornhill" target="_blank"><img class = "miniIcon" src="./assets/lastfm.png" width = 40px height = 40px></a>
+  </div>
+  <div class="iconColumn"><p> </p></div>
+  <div class="iconColumn"><p> </p></div>
+</div>
+
+<div class="partition">
+  <p><br/><br/><p>
+</div>
+
+<div id="banner2">
+  <div id="banner-content2">
+    <p></br>Tim Thornhill - 2020 - StockSnap.io</p>
+  </div>
+</div>
+
+<div id="popup1" class="overlay" #close>
+	<div class="popup">
+		<h2><br/><b>Queued Technical Specs</b></h2>
+		<a class="close" href="#close">&times;</a>
+		<div class="content">
+      <br/>Utilizes RESTful calls with Spotify and Last.fm APIs<br/><br/>
+      Leverages Google Firebase platform to host social network aspect of application<br/><br/>
+      Supported by several CocoaPods such as Alamofire, SwiftyJSON, and Kingfisher<br/><br/>
+      Built and version controlled in Xcode 9, written in Swift 4, shared and tested via TestFlight<br/><br/>
+      Incorporates scrollviews, tableviews, segues, image caching, user-authentication, custom nibs<br/><br/>
+    </div>
+	</div>
+</div>
+
+</section>
+</body>
+</html>
