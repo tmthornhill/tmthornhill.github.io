@@ -67,7 +67,7 @@ function getSpotifyToken() {
 
   if(window.location.hash) {
     spotifyToken = window.location.hash.substring(1); //Puts hash in variable, and removes the # character
-    cleanedToken = spotifyToken.substring(13,247);
+    cleanedToken = spotifyToken.substring(13,257);
     console.log(cleanedToken);
     bearer = "Bearer " + cleanedToken;
   }
